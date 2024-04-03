@@ -6,16 +6,16 @@ const MainComponent = () => {
       <div className={'h-3/4 border'}>main area</div>
       <div className={'h-1/4 border grid grid-cols-4'}>
         <div className={'col-span-1 border p-2'}>
-          <ImageBox />
+          <ImageBox index={0}/>
         </div>
         <div className={'col-span-1 border p-2'}>
-          <ImageBox />
+          <ImageBox index={1}/>
         </div>
         <div className={'col-span-1 border p-2'}>
-          <ImageBox />
+          <ImageBox index={2}/>
         </div>
         <div className={'col-span-1 border p-2'}>
-          <ImageBox />
+          <ImageBox index={3}/>
         </div>
       </div>
     </div>

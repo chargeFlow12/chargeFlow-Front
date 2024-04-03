@@ -1,17 +1,24 @@
 import axios from 'axios';
 import { useRef, useState } from 'react';
 import { useLoadingStore } from '../@store/loading.store';
+import { useChargeStore } from '../@store/charge.store';
+import {ChargerStatus, ChargeStatus} from "../@types/enum";
 
 type data = {
   resultText: string;
   resultType: string;
 };
 
-const ImageBox = () => {
+type IImageBoxProps={
+  index:number;
+}
+
+const ImageBox = ({index}:IImageBoxProps) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [info, setInfo] = useState<data>();
   const [image, setImage] = useState<any>();
   const setLoading = useLoadingStore((state) => state.setLoading);
+  const setChargeItem = useChargeStore((state)=>state.setChargeItem)
 
   const triggerFileInput = () => {
     // fileInputRef를 통해 input 요소의 클릭 이벤트를 프로그래밍 방식으로 트리거
@@ -35,6 +42,12 @@ const ImageBox = () => {
             resultText: res.data.resultText,
             resultType: res.data.resultType,
           });
+          setChargeItem(index,{
+            active:true,
+            chargerStatus:ChargerStatus.CHARGING,
+            chargeStatus:ChargeStatus.RAPIDITY,
+            time:60
+          })
           const reader = new FileReader();
           reader.onload = function (e) {
             setImage(e?.target?.result!); // 파일 읽기 작업이 성공적으로 완료되면 이미지 소스를 업데이트
