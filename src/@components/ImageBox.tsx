@@ -69,9 +69,9 @@ const ImageBox = ({ index }: IImageBoxProps) => {
   };
 
   return (
-    <div className={'w-full h-full border'}>
-      <div className={'h-3/4 grid text-center items-center cursor-pointer'} onClick={triggerFileInput}>
-        {image ? <img className={'object-cover max-w-full max-h-full'} src={image} alt={'sample'} /> : <>이미지선택</>}
+    <div className={'w-full h-full border rounded-2xl'}>
+      <div className={'h-3/4 grid text-center items-center cursor-pointer rounded-2xl'} onClick={triggerFileInput}>
+        {image ? <img className={'object-cover max-w-full max-h-full rounded-2xl'} src={image} alt={'sample'} /> : <>이미지선택</>}
         <input ref={fileInputRef} className={'hidden'} type={'file'} onChange={handleFileChange} />
       </div>
       <div className={'h-1/4 text-red-500'}>
