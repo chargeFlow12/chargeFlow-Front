@@ -14,9 +14,8 @@ export const useChargeStore = create<IChargeProps>((set) => ({
     { active: false, time: 0,memberShip:false },
   ],
   setChargeItem: (index, item) => {
-    set((state) => {
-      state.chargeList[index] = item;
-      return state;
-    });
+    set((state) => ({
+      chargeList: state.chargeList.map((charge, i) => (i === index ? item : charge)),
+    }));
   },
 }));

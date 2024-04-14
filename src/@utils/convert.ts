@@ -22,3 +22,15 @@ export const convertCharger = (value?: ChargeStatus) => {
       return '비어있음';
   }
 };
+
+export const convertCongestion = (value:number) => {
+  if(value<0.3){
+    return '원활'
+  }else if(value<0.7){
+    return '다소 혼잡'
+  }else if(value<1){
+    return '혼잡'
+  } else{
+    return '원활'
+  }
+}
