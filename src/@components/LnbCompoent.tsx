@@ -1,12 +1,17 @@
+import { faCar } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import axios from 'axios';
+import { motion } from 'framer-motion';
 import { useRef } from 'react';
-import { ImageBox } from './ImageBox';
 import { useChargeStore } from '../@store/charge.store';
-import {convertCharge, convertCharger} from "../@utils/convert";
-import {motion} from 'framer-motion'
+import { convertCharge, convertCharger } from '../@utils/convert';
+import { Button } from './Button';
+import { useSelectIndexStore } from '../@store/selectIndex.store';
+import { GridRow } from './GridRow';
 
 const LnbCompoent = () => {
-  const chargeList = useChargeStore((state)=>state.chargeList)
+  const chargeList = useChargeStore((state) => state.chargeList);
+  const selectIndex = useSelectIndexStore((state)=>state.selectIndex)
   const fileInputRefs = useRef([]);
 
   const handleFileChange = async (e: any) => {
@@ -24,42 +29,60 @@ const LnbCompoent = () => {
     }
   };
 
+  const checkBoolean=()=>{
+   return selectIndex!==0&&!selectIndex&&!chargeList[selectIndex!]?.active
+  }
+
   return (
     <section className={'w-1/2 grid p-4 border grid-rows-2'}>
       <section className="grid grid-rows-5">
-          <div className="grid row-span-1 grid-cols-4 p-4 gap-2">
-            <motion.div className={`text-3xl text-center grid items-center border shadow-lg`}
-            animate={{boxShadow:`${chargeList[0].active?`inset 1px 5px 1px rgba(0,0,0,0.2)`:`offset 2px 6px 2px rgba(0,0,0,0.2)`}`}}
-            >1</motion.div>
-              <motion.div className={`text-3xl text-center grid items-center border shadow-lg`}
-                          animate={{boxShadow:`${chargeList[1].active?`inset 1px 5px 1px rgba(0,0,0,0.2)`:`offset 2px 6px 2px rgba(0,0,0,0.2)`}`}}
-              >2</motion.div>
-              <motion.div className={`text-3xl text-center grid items-center border shadow-lg`}
-                          animate={{boxShadow:`${chargeList[2].active?`inset 1px 5px 1px rgba(0,0,0,0.2)`:`offset 2px 6px 2px rgba(0,0,0,0.2)`}`}}
-              >3</motion.div>
-              <motion.div className={`text-3xl text-center grid items-center border shadow-lg`}
-                          animate={{boxShadow:`${chargeList[3].active?`inset 1px 5px 1px rgba(0,0,0,0.2)`:`offset 2px 6px 2px rgba(0,0,0,0.2)`}`}}
-              >4</motion.div>
-          </div>
-          <div className="grid grid-rows-[4] row-span-3 p-4 gap-2">
-            {/* 하나라도 있으면 상태:충전중 아니면 상태:비어있음 상태:비전기차 주차 */}
-            <div className={'row-span-1 border p-2 flex items-center'}>
-                <span>충전기상태 : </span>
-                <span>{convertCharge(chargeList[0].chargerStatus)}/{convertCharge(chargeList[1].chargerStatus)}/{convertCharge(chargeList[2].chargerStatus)}/{convertCharge(chargeList[3].chargerStatus)}</span>
-            </div>
-            {/*  */}
-            <div className={'row-span-1 border p-2 flex items-center'}>
-                <span>충전상태 : </span>
-                <span>{convertCharger(chargeList[0].chargeStatus)}/{convertCharger(chargeList[1].chargeStatus)}/{convertCharger(chargeList[2].chargeStatus)}/{convertCharger(chargeList[3].chargeStatus)}</span>
-            </div>
-            <div className={'row-span-1 border p-2 flex items-center'}>
-                <span>충전 잔여시간 : </span>
-                <span>{chargeList[0].time}/{chargeList[1].time}/{chargeList[2].time}/{chargeList[3].time}</span>
-
-            </div>
-          </div>
+        <div className="grid row-span-1 grid-cols-4 p-4 gap-2">
+          <Button item={chargeList[0]} index={0}/>
+          <Button item={chargeList[1]} index={1}/>
+          <Button item={chargeList[2]} index={2}/>
+          <Button item={chargeList[3]} index={3}/>
+        </div>
+        <div className="grid grid-rows-[4] row-span-3 p-4 gap-2">
+          {/* 하나라도 있으면 상태:충전중 아니면 상태:비어있음 상태:비전기차 주차 */}
+          <GridRow>
+            <span className='col-span-1'>충전기상태</span>
+            <span className='col-span-3'>
+              {checkBoolean()?'':convertCharge(chargeList[selectIndex!].chargerStatus)}
+            </span>
+          </GridRow>
+          {/*  */}
+          <GridRow>
+            <span className='col-span-1'>충전상태</span>
+            <span className='col-span-3'>
+            {checkBoolean()?'':convertCharger(chargeList[selectIndex!].chargeStatus)}
+            </span>
+          </GridRow>
+          <GridRow>
+            <span className='col-span-1'>충전 잔여시간</span>
+            <span className='col-span-3'>
+              {checkBoolean()?'':chargeList[selectIndex!].time}
+            </span>
+          </GridRow>
+          <GridRow>
+            <span className='col-span-1'>멤버쉽 동의 여부</span>
+            <span className='col-span-3'>
+              <input type="checkbox" checked={chargeList[selectIndex!]?.memberShip!}/>
+              </span>
+          </GridRow>
+          <GridRow>
+            <span className='col-span-1'>오버타임</span>
+            <span className='col-span-3'>
+              {selectIndex===undefined?'':'급속 1시간/완속 10시간'}
+            </span>
+          </GridRow>
+          <GridRow>
+            <span className='col-span-1'>차번 및 차종</span>
+            <span className='col-span-3'>{selectIndex!==undefined&&!chargeList[selectIndex!]?.carNo?'':`${chargeList[selectIndex!]?.carNo!}/${chargeList[selectIndex!]?.carType!}`}</span>
+          </GridRow>
+        </div>
       </section>
-      <section className=""></section>
+      <section className="">
+      </section>
     </section>
   );
 };
