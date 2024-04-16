@@ -25,7 +25,6 @@ const LnbCompoent = () => {
           'Content-Type': 'multipart/form-data',
         },
       });
-      console.log(res);
     }
   };
 

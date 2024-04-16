@@ -1,5 +1,11 @@
 import { ChargerStatus, ChargeStatus } from './enum';
 
+export type ImageInfo={
+  url:string;
+  carNo:string;
+  carType:string
+}
+
 export type ChargeItem = {
   active: boolean;
   // 차번
@@ -15,6 +21,7 @@ export type ChargeItem = {
   // 오바타임??
   overTime?:number;
   time?: number;
+  imageUrl?:string;
 };
 
 export type CommonChargeItem={
