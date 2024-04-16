@@ -49,9 +49,6 @@ const ImageBox = ({ index }: IImageBoxProps) => {
             time: 60,
             carNo:res.data.resultText,
             memberShip:true,
-            overTime:{
-              rapidity:res.data.resultType!=='Electric',
-            },
             carType:res.data.resultType
           });
           const reader = new FileReader();

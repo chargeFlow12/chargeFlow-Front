@@ -4,7 +4,7 @@ import axios from 'axios';
 import { motion } from 'framer-motion';
 import {useEffect, useRef, useState} from 'react';
 import { useChargeStore } from '../@store/charge.store';
-import {convertCharge, convertCharger, convertCongestion} from '../@utils/convert';
+import {convertCharge, convertCharger, convertCongestion, convertOverTime} from '../@utils/convert';
 import { Button } from './Button';
 import { useSelectIndexStore } from '../@store/selectIndex.store';
 import { GridRow } from './GridRow';
@@ -82,7 +82,7 @@ const LnbCompoent = () => {
             </div>
           </GridRow>
           <GridRow title={'오버타임'}>
-              {selectIndex===undefined?'':'급속 1시간/완속 10시간'}
+              {checkBoolean()?'':convertOverTime(chargeList[selectIndex!]?.chargeStatus!,chargeList[selectIndex!]?.overTime!)}
           </GridRow>
           <GridRow title={'차번 및 차종'}>
             {selectIndex!==undefined&&!chargeList[selectIndex!]?.carNo?'':`${chargeList[selectIndex!]?.carNo!}/${chargeList[selectIndex!]?.carType!}`}

@@ -5,5 +5,7 @@ export enum ChargerStatus {
 }
 export enum ChargeStatus {
   RAPIDITY = 'RAPIDITY',
+  SLOW_CHARGE='SLOW_CHARGE',
+  RAPIDITY_AND_SLOW='RAPIDITY_AND_SLOW',
   NONE = 'NONE',
 }
