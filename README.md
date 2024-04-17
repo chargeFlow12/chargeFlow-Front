@@ -52,3 +52,7 @@ npm run start
 - tailwind (스타일링)
 - fontawesome (폰트)
 - Yarn (패키지 관리)
+
+## License
+
+[License](https://github.com/chargeFlow12/chargeFlow-Front/blob/main/LICENSE)
