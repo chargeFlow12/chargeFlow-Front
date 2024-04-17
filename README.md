@@ -1,46 +1,50 @@
-# Getting Started with Create React App
+# React 어플리케이션
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+이 프로젝트는 React.js를 사용하여 구현된 웹 어플리케이션입니다. 이 어플리케이션은 사용자에게 인터랙티브한 웹 인터페이스를 제공하며, 모던 웹 기술을 활용하여 효율적이고 반응이 빠른 사용자 경험을 제공합니다.
 
-## Available Scripts
+## 주요 기능
 
-In the project directory, you can run:
+- **동적 UI 구성**: React의 컴포넌트 기반 아키텍처를 통해 동적인 사용자 인터페이스 구성
+- **상태 관리**: 상태 관리를 위한 zustand를 이용한 상태관리
+- **스타일링**: tailwind와 fontawesome을 이용한 스타일링
 
-### `yarn start`
+## 시작하기
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+이 섹션은 프로젝트를 로컬 환경에서 설정하고 실행하는 방법을 안내합니다.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### 필요 조건
 
-### `yarn test`
+프로젝트를 실행하기 전에 다음 도구들이 설치되어 있어야 합니다:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Node.js (버전 18 이상)
+- Yarn
 
-### `yarn build`
+### 설치 및 실행
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. 저장소를 클론합니다:
+```bash
+git clone https://github.com/chargeFlow12/chargeFlow-Front.git
+```
+2. 프로젝트 디렉토리로 이동합니다:
+```bash
+cd yourproject
+```
+3. 패키지들을 설치합니다.
+```bash
+yarn install
+```
+4. 개발 서버를 시작하려면 다음 명령을 실행하세요
+```bash
+yarn start
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### 필요 조건
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+프로젝트를 실행하기 전에 다음 도구들이 설치되어 있어야 합니다
 
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+- React.js
+- typescript
+- zustand (상태 관리)
+- tailwind (스타일링)
+- fontawesome (폰트)
+- Yarn (패키지 관리)
