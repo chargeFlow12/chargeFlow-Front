@@ -17,7 +17,7 @@
 프로젝트를 실행하기 전에 다음 도구들이 설치되어 있어야 합니다:
 
 - Node.js (버전 18 이상)
-- Yarn
+- Yarn or npm
 
 ### 설치 및 실행
 
@@ -27,15 +27,19 @@ git clone https://github.com/chargeFlow12/chargeFlow-Front.git
 ```
 2. 프로젝트 디렉토리로 이동합니다:
 ```bash
-cd yourproject
+cd chargeFlow-Front
 ```
-3. 패키지들을 설치합니다.
+3. yarn이나 npm을 이용해 패키지들을 설치합니다.
 ```bash
-yarn install
+yarn add
+or
+npm i
 ```
-4. 개발 서버를 시작하려면 다음 명령을 실행하세요
+4. yarn이나 npm을 이용해 개발 서버를 시작하려면 다음 명령을 실행하세요
 ```bash
 yarn start
+or
+npm run start
 ```
 
 ### 필요 조건
