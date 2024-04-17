@@ -1,5 +1,5 @@
-import {ChargerStatus, ChargeStatus} from '../@types/enum';
-import {CommonChargeItem} from "../@types/type";
+import { ChargerStatus, ChargeStatus } from '../@types/enum';
+import { CommonChargeItem } from '../@types/type';
 
 export const convertCharge = (value?: ChargerStatus) => {
   switch (value) {
@@ -13,7 +13,7 @@ export const convertCharge = (value?: ChargerStatus) => {
       return '충전가능';
   }
 };
-export const convertOverTime=(chargeStatus:ChargeStatus,time:number)=>{
+export const convertOverTime = (chargeStatus: ChargeStatus, time: number) => {
   switch (chargeStatus) {
     case ChargeStatus.RAPIDITY:
       return `급속 ${time}시간`;
@@ -24,7 +24,7 @@ export const convertOverTime=(chargeStatus:ChargeStatus,time:number)=>{
     default:
       return '비어있음';
   }
-}
+};
 
 export const convertCharger = (value?: ChargeStatus) => {
   switch (value) {
@@ -41,21 +41,21 @@ export const convertCharger = (value?: ChargeStatus) => {
   }
 };
 
-export const convertCongestion = (value:number) => {
-  if(value<=0.3){
-    return '원활'
-  }else if(value<=0.7){
-    return '다소 혼잡'
-  }else if(value<=1){
-    return '혼잡'
-  } else{
-    return '원활'
+export const convertCongestion = (value: number) => {
+  if (value <= 0.3) {
+    return '원활';
+  } else if (value <= 0.7) {
+    return '다소 혼잡';
+  } else if (value <= 1) {
+    return '혼잡';
+  } else {
+    return '원활';
   }
-}
+};
 
-export const convertTemp = (value:CommonChargeItem['chgerType'],electric:boolean)=>{
-  if(electric){
-    switch (value){
+export const convertTemp = (value: CommonChargeItem['chgerType'], electric: boolean) => {
+  if (electric) {
+    switch (value) {
       case '01':
         return ChargeStatus.RAPIDITY;
       case '02':
@@ -73,8 +73,7 @@ export const convertTemp = (value:CommonChargeItem['chgerType'],electric:boolean
       case '08':
         return ChargeStatus.RAPIDITY_AND_SLOW;
     }
-  }else{
-    return ChargeStatus.NONE
+  } else {
+    return ChargeStatus.NONE;
   }
-
-}
+};

@@ -1,8 +1,5 @@
-import axios from 'axios';
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 import { useChargeStore } from '../@store/charge.store';
-import { useLoadingStore } from '../@store/loading.store';
-import { ChargerStatus, ChargeStatus } from '../@types/enum';
 
 type data = {
   resultText: string;
@@ -17,7 +14,7 @@ const ImageBox = ({ index }: IImageBoxProps) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
   // const [info, setInfo] = useState<data>();
   // const [image, setImage] = useState<any>();
-  const [chargeList,setChargeItem] = useChargeStore((state) => [state.chargeList,state.setChargeItem]);
+  const [chargeList, setChargeItem] = useChargeStore((state) => [state.chargeList, state.setChargeItem]);
 
   const triggerFileInput = () => {
     // fileInputRef를 통해 input 요소의 클릭 이벤트를 프로그래밍 방식으로 트리거
@@ -67,7 +64,15 @@ const ImageBox = ({ index }: IImageBoxProps) => {
   return (
     <div className={'w-full h-full border rounded-2xl'}>
       <div className={'h-3/4 grid text-center items-center cursor-pointer rounded-2xl'} onClick={triggerFileInput}>
-        {chargeList![index!]?.imageUrl ? <img className={'object-cover max-w-full max-h-full rounded-2xl'} src={chargeList![index!]?.imageUrl} alt={'sample'} /> : <>이미지선택</>}
+        {chargeList![index!]?.imageUrl ? (
+          <img
+            className={'object-cover max-w-full max-h-full rounded-2xl'}
+            src={chargeList![index!]?.imageUrl}
+            alt={'sample'}
+          />
+        ) : (
+          <>이미지선택</>
+        )}
         <input ref={fileInputRef} className={'hidden'} type={'file'} />
       </div>
       <div className={'h-1/4 text-red-500 grid gap-2'}>

@@ -6,5 +6,5 @@ interface ISelectIndex {
 }
 
 export const useSelectIndexStore = create<ISelectIndex>((set: any) => ({
-    setSelectIndex: (selectIndex) => set(() => ({ selectIndex })),
+  setSelectIndex: (selectIndex) => set(() => ({ selectIndex })),
 }));
