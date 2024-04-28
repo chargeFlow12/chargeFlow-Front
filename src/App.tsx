@@ -15,7 +15,7 @@ import { ModalPortal } from './ModalPortal';
 
 function App() {
   const loading = useLoadingStore((state) => state.loading);
-  const [chargeList,setChargeList] = useChargeStore((state) => [state.chargeList,state.setChargeList]);
+  const [chargeList, setChargeList] = useChargeStore((state) => [state.chargeList, state.setChargeList]);
   const setLoading = useLoadingStore((state) => state.setLoading);
   const setIndex = useSelectIndexStore((state) => state.setSelectIndex);
 
@@ -38,8 +38,8 @@ function App() {
         const one = TempUploadImage('/assets/one.jpeg');
         const two = TempUploadImage('/assets/two.jpg');
         const three = TempUploadImage('/assets/three.jpeg');
-        
-        Promise.all([one,two,three])
+
+        Promise.all([one, two, three])
           .then((image) => {
             if (image && list) {
               const chargeItems: ChargeItem[] = list.map((item: any, index: number) => {
@@ -58,9 +58,10 @@ function App() {
                 } else {
                   return {
                     active: true, // 원래라면 item.stat값과 차량 이미지 분석 데이터를 통해 활성여부 체크
-                    chargerStatus: image[index]?.resultType==='Electric'?ChargerStatus.CHARGING:ChargerStatus.NONE_ELECTRIC, // 시연을 위해 static하게 구성 원래라면 item.stat값을 바라봐야됨
-                    chargeStatus: convertTemp(item.chgerType, image[index]?.resultType==='Electric'), // 정적인 데이터라 그대로 넣어줌
-                    time: image[index]?.resultType==='Electric'?1:0,
+                    chargerStatus:
+                      image[index]?.resultType === 'Electric' ? ChargerStatus.CHARGING : ChargerStatus.NONE_ELECTRIC, // 시연을 위해 static하게 구성 원래라면 item.stat값을 바라봐야됨
+                    chargeStatus: convertTemp(item.chgerType, image[index]?.resultType === 'Electric'), // 정적인 데이터라 그대로 넣어줌
+                    time: image[index]?.resultType === 'Electric' ? 1 : 0,
                     overTime: 10, // 시연을 위해 static하게 구성 원래라면 item.lastTedt값을 바라봐야됨
                     memberShip: true, // 차번을 이용해 확인할 계획
                     carNo: image[index].resultText,
@@ -69,13 +70,13 @@ function App() {
                   };
                 }
               });
-              const newChargeList= chargeList.map((item,index)=>{
-                if(chargeItems[index]){
-                  return chargeItems[index]
-                }else {
-                  return item
+              const newChargeList = chargeList.map((item, index) => {
+                if (chargeItems[index]) {
+                  return chargeItems[index];
+                } else {
+                  return item;
                 }
-              })
+              });
               setChargeList(newChargeList);
               setIndex(0);
             }
