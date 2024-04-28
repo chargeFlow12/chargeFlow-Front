@@ -40,7 +40,7 @@ const LnbCompoent = () => {
       <section className="grid grid-rows-2 row-span-1 gap-2 bg-white rounded-2xl p-4">
         {/*충전소 상태*/}
         <GridRow title={'전체 혼잡도'}>{convertCongestion(congestion)}</GridRow>
-        <GridRow title={'충전소 상태'}>급송 충전기 평균 오버타임 52분 / 완속 충전기 평균 오버타임 9시간</GridRow>
+        <GridRow title={'충전소 평균오버타임'}>급송 충전기 평균 오버타임 52분 / 완속 충전기 평균 오버타임 9시간</GridRow>
       </section>
       <section className="grid grid-rows-5 row-span-4 bg-white rounded-2xl">
         <div className={'row-span-1 grid grid-rows-4  p-2'}>
@@ -59,24 +59,10 @@ const LnbCompoent = () => {
             {checkBoolean() ? '' : convertCharge(chargeList[selectIndex!].chargerStatus)}
           </GridRow>
           {/*  */}
-          <GridRow title={'충전상태'}>
+          <GridRow title={'충전기 종류'}>
             {checkBoolean() ? '' : convertCharger(chargeList[selectIndex!].chargeStatus)}
           </GridRow>
           <GridRow title={'충전 잔여시간'}>{checkBoolean() ? '' : chargeList[selectIndex!].time}</GridRow>
-          <GridRow title={'멤버쉽 동의 여부'}>
-            <div className={'inline-block rounded-2xl border'}>
-              <button
-                className={`rounded-2xl w-20 h-10 ${chargeList[selectIndex!]?.memberShip ? 'bg-blue-500 text-white border-blue-500' : ''}`}
-              >
-                동의
-              </button>
-              <button
-                className={`rounded-2xl w-20 h-10 ${!chargeList[selectIndex!]?.memberShip ? 'bg-blue-500 text-white border-blue-500' : ''}`}
-              >
-                미동의
-              </button>
-            </div>
-          </GridRow>
           <GridRow title={'오버타임'}>
             {checkBoolean()
               ? ''
