@@ -1,5 +1,7 @@
 import { useRef } from 'react';
 import { useChargeStore } from '../@store/charge.store';
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import { faCar } from '@fortawesome/free-solid-svg-icons';
 
 type data = {
   resultText: string;
@@ -62,27 +64,35 @@ const ImageBox = ({ index }: IImageBoxProps) => {
   // };
 
   return (
-    <div className={'w-full h-full border rounded-2xl'}>
-      <div className={'h-3/4 grid text-center items-center cursor-pointer rounded-2xl'} onClick={triggerFileInput}>
-        {chargeList![index!]?.imageUrl ? (
-          <img
-            className={'object-cover max-w-full max-h-full rounded-2xl'}
-            src={chargeList![index!]?.imageUrl}
-            alt={'sample'}
-          />
-        ) : (
-          <>이미지선택</>
-        )}
-        <input ref={fileInputRef} className={'hidden'} type={'file'} />
-      </div>
-      <div className={'h-1/4 text-red-500 grid gap-2'}>
-        {chargeList![index!] && (
-          <>
-            <span>{chargeList[index].carNo}</span>
-            <span>{chargeList[index].carType}</span>
-          </>
-        )}
-      </div>
+    <div className={'w-full h-full border rounded-2xl bg-white shadow-2xl'}>
+      {
+        chargeList![index!]?.imageUrl?<>
+          <div className={'h-3/4 grid text-center items-center cursor-pointer rounded-2xl justify-center'} onClick={triggerFileInput}>
+              <img
+                className={'object-cover max-w-full max-h-full rounded-2xl w-[300px] h-[200px]'}
+                src={chargeList![index!]?.imageUrl}
+                alt={'sample'}
+              />
+            <input ref={fileInputRef} className={'hidden'} type={'file'} />
+          </div>
+          <div className={`h-1/4 ${chargeList[index].carType=='Electric'?'text-green-500':'text-red-500'} flex gap-2 font-bold text-xl items-center justify-center`}>
+            {chargeList![index!] && (
+              <>
+                <span>{chargeList[index].carNo}</span>
+                <span>/</span>
+                <span>{chargeList[index].carType==='Electric'?'전기차':'전기차 아님'}</span>
+              </>
+            )}
+          </div>
+        </>: 
+        <div className={'h-full grid text-center items-center cursor-pointer rounded-2xl text-3xl font-bold shadow-2xl'} onClick={triggerFileInput}>
+          <FontAwesomeIcon icon={faCar}/>
+          <span>
+          비어있음</span>
+
+        </div>
+      }
+
     </div>
   );
 };

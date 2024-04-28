@@ -36,13 +36,13 @@ const LnbCompoent = () => {
   }, [chargeList]);
 
   return (
-    <section className={'w-1/2 grid p-4 border grid-rows-5 bg-gray-100 gap-4 font-medium'}>
-      <section className="grid grid-rows-2 row-span-1 gap-2 bg-white rounded-2xl p-4">
+    <section className={'w-1/2 grid p-4 grid-rows-5 gap-4 font-medium'}>
+      <section className="grid grid-rows-2 row-span-1 gap-2 bg-white rounded-2xl p-4 shadow-2xl">
         {/*충전소 상태*/}
         <GridRow title={'전체 혼잡도'}>{convertCongestion(congestion)}</GridRow>
         <GridRow title={'충전소 평균오버타임'}>급송 충전기 평균 오버타임 52분 / 완속 충전기 평균 오버타임 9시간</GridRow>
       </section>
-      <section className="grid grid-rows-5 row-span-4 bg-white rounded-2xl">
+      <section className="grid grid-rows-5 row-span-4 bg-white rounded-2xl shadow-2xl">
         <div className={'row-span-1 grid grid-rows-4  p-2'}>
           <div className={'grid row-span-1 text-lg font-extrabold items-center px-4 py-4'}>충전기별 상태</div>
           <div className="grid row-span-3 grid-cols-4 p-4 gap-2">
